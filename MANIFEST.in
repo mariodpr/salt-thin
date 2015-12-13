@@ -1,8 +1,11 @@
 recursive-include salt *
 recursive-include markupsafe *
 recursive-include jinja2 *
-recursive-include msgpack_pure *
+recursive-include msgpack *
 recursive-include yaml *
 recursive-include requests *
+recursive-include tornado *
+recursive-include concurrent *
+recursive-include certifi *
 include salt-call
 include salt-ssh

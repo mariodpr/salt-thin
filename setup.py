@@ -12,19 +12,25 @@ import distutils.command.sdist
 from distutils.core import setup
 
 components = {
-              'Jinja2-2.7.3': 'https://pypi.python.org/packages/source/J/Jinja2/Jinja2-2.7.3.tar.gz',
+              'Jinja2-2.8': 'https://pypi.python.org/packages/source/J/Jinja2/Jinja2-2.8.tar.gz',
               'MarkupSafe-0.23': 'https://pypi.python.org/packages/source/M/MarkupSafe/MarkupSafe-0.23.tar.gz',
-              'msgpack-pure-0.1.3': 'https://pypi.python.org/packages/source/m/msgpack-pure/msgpack-pure-0.1.3.tar.gz',
+              'msgpack-python-0.4.6': 'https://pypi.python.org/packages/source/m/msgpack-python/msgpack-python-0.4.6.tar.gz',
               'PyYAML-3.11': 'https://pypi.python.org/packages/source/P/PyYAML/PyYAML-3.11.tar.gz',
               'requests-2.4.3': 'https://pypi.python.org/packages/source/r/requests/requests-2.4.3.tar.gz',
+              'tornado-4.2.1': 'https://pypi.python.org/packages/source/t/tornado/tornado-4.2.1.tar.gz',
+              'futures-3.0.3': 'https://pypi.python.org/packages/source/f/futures/futures-3.0.3.tar.gz',
+              'certifi-2015.11.20.1': 'https://pypi.python.org/packages/source/c/certifi/certifi-2015.11.20.1.tar.gz'
               }
 libs = set([
             'salt',
             'yaml',
             'jinja2',
-            'msgpack_pure',
+            'msgpack',
             'markupsafe',
             'requests',
+            'tornado',
+            'concurrent',
+            'certifi'
             ])
 
 CWD = os.getcwd()
@@ -72,7 +78,7 @@ def build_setup(salt, git_version = None):
             if sub == 'lib':
                 shutil.copytree(os.path.join(full, 'yaml'), os.path.join(CWD, 'yaml'))
     if salt == 'git':
-        subprocess.call('git clone https://github.com/saltstack/salt.git', shell=True)
+        subprocess.call('git clone --depth 100 https://github.com/saltstack/salt.git', shell=True)
         shutil.move('salt', 'salt_git')
         cwd = os.getcwd()
         try:
